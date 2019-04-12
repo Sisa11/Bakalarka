@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="56dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+        <TextView android:id="@+id/pridaj"
+                  android:layout_width="wrap_content"
+                  android:layout_height="72dp"
+                  android:layout_marginBottom="24dp"
+                  android:layout_gravity="center_horizontal"
+                  android:text="Pridanie noveho lieku"
+                  android:gravity="center"
+                  android:textSize="24dip"/>
+
+        <!--  Name Label -->
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+            <AutoCompleteTextView android:id="@+id/input_nazov"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="textCapWords"
+                      android:hint="Nazov" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--  Date Label -->
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_date"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="textCapWords"
+                      android:hint="Datum zacatia upozornovania" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <!--  Times Label -->
+            <TextView android:id="@+id/view_alarms"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:hint="Pridaj cas upozornenia" />
+
+        <android.support.design.widget.FloatingActionButton
+                android:src="@android:drawable/ic_lock_idle_alarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:id="@+id/alarm"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="16dp"/>
+
+        <!--  Package Label -->
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_balenie"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="number"
+                      android:hint="Pocet baleni" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--  Pills Label -->
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_pills"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:inputType="number"
+                      android:hint="Pocet kusov tabliet navyse" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <!-- Save Button -->
+        <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_save"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="5dp"
+                android:padding="12dp"
+                android:text="Ulozit"/>
+
+        <!-- Cancel Button -->
+        <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"
+                android:text="Zrusit"/>
+
+
+    </LinearLayout>
+</ScrollView>
