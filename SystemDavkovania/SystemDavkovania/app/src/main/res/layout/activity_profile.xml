@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="56dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+        <TextView android:id="@+id/profi"
+                  android:layout_width="wrap_content"
+                  android:layout_height="72dp"
+                  android:layout_marginBottom="24dp"
+                  android:layout_gravity="center_horizontal"
+                  android:text="Profil"
+                  android:gravity="center"
+                  android:textSize="24dip"/>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+
+            <TextView android:id="@+id/username"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginBottom="24dp"
+                      android:text="Username: "
+                      android:gravity="center"
+                      android:textSize="16dip"
+            />
+
+
+            <EditText android:id="@+id/usernameV"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="16dip"
+                      android:layout_marginStart="109dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+
+        <TextView android:id="@+id/name"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="24dp"
+                  android:text="Meno: "
+                  android:gravity="center"
+                  android:textSize="16dip"
+        />
+
+
+        <EditText android:id="@+id/nameV"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="16dip"
+                  android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+                  android:layout_marginStart="109dp"/>
+
+    </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+
+            <TextView android:id="@+id/surname"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginBottom="24dp"
+                      android:text="Priezvisko: "
+                      android:gravity="center"
+                      android:textSize="16dip"
+            />
+
+
+            <EditText android:id="@+id/surnameV"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="16dip"
+                      android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+                      android:layout_marginStart="109dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+
+            <TextView android:id="@+id/mail"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginBottom="24dp"
+                      android:text="E-mail: "
+                      android:gravity="center"
+                      android:textSize="16dip"
+            />
+
+
+            <EditText android:id="@+id/mailV"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="16dip"
+                      android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+                      android:layout_marginStart="109dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+
+            <TextView android:id="@+id/pass"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginBottom="24dp"
+                      android:text="Heslo: "
+                      android:gravity="center"
+                      android:textSize="16dip"
+            />
+
+
+            <EditText android:id="@+id/passV"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="16dip"
+                      android:inputType="textPassword"
+                      android:layout_alignParentTop="true" android:layout_alignParentStart="true"
+                      android:layout_marginStart="109dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+            <Button android:id="@+id/can"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zrusit "
+                    android:textSize="16dip"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignParentEnd="true" android:layout_alignParentTop="true"
+                    android:layout_marginEnd="53dp"/>
+
+            <Button android:id="@+id/change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ulozit zmeny "
+                    android:textSize="16dip"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignParentStart="true" android:layout_marginStart="33dp"
+                    android:layout_alignParentTop="true"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>
