@@ -22,9 +22,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     //private ArrayList<Item> listData = new ArrayList<>();
     private Context context;
 
-    public RecyclerViewAdapter(ArrayList<Item> listData, Context context){
+    public RecyclerViewAdapter(ArrayList<Item> listData, Context context, ItemClickListener itemClickListener){
         this.mitemList = listData;
         this.context = context;
+        this.itemClickListener = itemClickListener;
     }
     private ItemClickListener itemClickListener;
     private ArrayList<Item> mitemList;
@@ -76,22 +77,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.mtextView1.setText(currentItem.getTextV1());
         holder.mtextView2.setText(currentItem.getTextV2());
         holder.switchView.setChecked(currentItem.isSwitchView());
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position, boolean isLongClick) {
-                if(isLongClick){
-                    Toast.makeText(context, "Lond Click: "+mitemList.get(position), Toast.LENGTH_SHORT);
-                }
-                    else{
-                    Log.d(TAG, "onClick:" + mitemList.get(position));
-                    //Toast.makeText(context, " "+mitemList.get(position), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(context, DetailActivity.class);
-                    intent.putExtra("name", mitemList.get(position).getTextV1());
-                    context.startActivity(intent);
-
-                }
-            }
-        });
+        holder.setItemClickListener(itemClickListener);
+//        holder.setItemClickListener(new ItemClickListener() {
+//            @Override
+//            public void onClick(View view, int position, boolean isLongClick) {
+//                if(isLongClick){
+//                    Toast.makeText(context, "Lond Click: "+ mitemList.get(position), Toast.LENGTH_SHORT);
+//                }
+//                    else{
+//                    Log.d(TAG, "onClick:" + mitemList.get(position));
+//                    //Toast.makeText(context, " "+ mitemList.get(position), Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(context, DetailActivity.class);
+//                    intent.putExtra("name", mitemList.get(position).getTextV1());
+//                    context.startActivity(intent);
+//
+//                }
+//            }
+//        });
     }
 
     @Override

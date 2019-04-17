@@ -10,12 +10,23 @@ import java.util.List;
 
 public class Times
 {
+  private java.util.Date time;
     private String ownerId;
     private String objectId;
     private java.util.Date updated;
     private java.util.Date created;
     private String idCurrentMedicine;
     private String timeOfNotification;
+  public java.util.Date getTime()
+  {
+    return time;
+  }
+
+  public void setTime( java.util.Date time )
+  {
+    this.time = time;
+  }
+
     public String getOwnerId()
     {
         return ownerId;

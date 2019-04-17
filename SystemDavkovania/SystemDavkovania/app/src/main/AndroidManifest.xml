@@ -38,6 +38,16 @@
         </activity>
         <activity android:name=".Windows.ProfileActivity">
         </activity>
+        <activity android:name=".Windows.AlarmActivity">
+        </activity>
+        <activity android:name=".Windows.AlarmManagerActivity">
+        </activity>
+
+
+        <receiver
+                android:name=".Entities.AlarmTriggerBroadcastReceiver"
+                android:enabled="true"
+                android:exported="true"/>
     </application>
 
 </manifest>

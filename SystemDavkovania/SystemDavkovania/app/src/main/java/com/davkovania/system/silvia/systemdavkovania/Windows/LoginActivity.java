@@ -18,7 +18,9 @@ import com.davkovania.system.silvia.systemdavkovania.Database.Medicine;
 import com.davkovania.system.silvia.systemdavkovania.Database.User;
 import com.davkovania.system.silvia.systemdavkovania.Entities.AESCrypt;
 import com.davkovania.system.silvia.systemdavkovania.Entities.Defaults;
+import com.davkovania.system.silvia.systemdavkovania.Entities.UserUtil;
 import com.davkovania.system.silvia.systemdavkovania.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button login;
     private ArrayList<CurrentMedicine> tmpList;
     private ArrayList<User> currUser;
+    SharedPreferences prefs;
     User u;
 
     @Override
@@ -47,11 +50,14 @@ public class LoginActivity extends AppCompatActivity {
         Backendless.setUrl(Defaults.SERVER_URL);
         Backendless.initApp(this, Defaults.APPLICATION_ID, Defaults.API_KEY);
 
-        SharedPreferences prefs = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
+         prefs = getSharedPreferences("USER_PREFS", MODE_PRIVATE);
 
-        if (prefs.getBoolean("isLogged", false)) {
+        if (UserUtil.isLoogedIn(prefs)) {
+            //todo dotiahn8t ho znova ak by nahodou sa zmenilo v db
+            Intent mainPage = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(mainPage);
             //currUser.contains(getSharedPreferences("USER_PREFS", MODE_PRIVATE));
-            getCurrentMedicines();
+            //getCurrentMedicines();
         }
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         DataQueryBuilder dataQuery = DataQueryBuilder.create();
-        dataQuery.setWhereClause( "userID = '"+ getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+        dataQuery.setWhereClause( "userID = '"+ getSharedPreferences(UserUtil.PREFS_NAME, UserUtil.PREFS_MODE)
                 .getString("id",null)+ "'" );
 
         Backendless.Data.of(CurrentMedicine.class).find(dataQuery, new AsyncCallback<List<CurrentMedicine>>(){
@@ -142,9 +148,12 @@ public class LoginActivity extends AppCompatActivity {
                     User user = response.get(0);
                     try {
                         if(user.getPassword().equals(AESCrypt.encrypt(password.getText().toString()))){
-                            currUser = new ArrayList<>(response);
-                            setPreferencies(user);
-                            getCurrentMedicines();
+                           // currUser = new ArrayList<>(response);
+                            UserUtil.saveUserToSharedPteferencie(user, prefs);
+                            Intent mainPage = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(mainPage);
+                            //setPreferencies(user);
+                            //getCurrentMedicines();
 
                         }
                     } catch (Exception e) {
@@ -160,16 +169,18 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void setPreferencies (User user){
-        SharedPreferences.Editor editor = getSharedPreferences("USER_PREFS", MODE_PRIVATE).edit();
-        editor.putString("username", user.getUsername());
-        editor.putString("name", user.getName());
-        editor.putString("surname", user.getSurname());
-        editor.putString("emial", user.getEmail());
-        editor.putString("id", user.getObjectId());
-        editor.putBoolean("isLogged", true);
-        editor.apply();
-    }
+
+
+//    private void setPreferencies (User user){
+//        SharedPreferences.Editor editor = getSharedPreferences("USER_PREFS", MODE_PRIVATE).edit();
+//        editor.putString("username", user.getUsername());
+//        editor.putString("name", user.getName());
+//        editor.putString("surname", user.getSurname());
+//        editor.putString("emial", user.getEmail());
+//        editor.putString("id", user.getObjectId());
+//        editor.putBoolean("isLogged", true);
+//        editor.apply();
+//    }
 
 }
 

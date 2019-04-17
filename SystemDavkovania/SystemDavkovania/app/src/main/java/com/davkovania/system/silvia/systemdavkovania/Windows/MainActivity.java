@@ -19,19 +19,21 @@ import com.davkovania.system.silvia.systemdavkovania.Database.CurrentMedicine;
 import com.davkovania.system.silvia.systemdavkovania.Database.Medicine;
 import com.davkovania.system.silvia.systemdavkovania.Database.User;
 import com.davkovania.system.silvia.systemdavkovania.Entities.Item;
+import com.davkovania.system.silvia.systemdavkovania.Entities.UserUtil;
 import com.davkovania.system.silvia.systemdavkovania.Fragments.Active;
 import com.davkovania.system.silvia.systemdavkovania.Fragments.NotActive;
 import com.davkovania.system.silvia.systemdavkovania.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<User> currentUser = new ArrayList<>();
     RecyclerView names;
-    ArrayList<CurrentMedicine> currentMedicines = new ArrayList<>();
+    List<CurrentMedicine> currentMedicines = new ArrayList<>();
     ArrayList<Medicine> medicines = new ArrayList<>();
 
     /**
@@ -74,10 +76,13 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("SILVINKA");
 
         //currentUser = (User) getIntent().getSerializableExtra("user");
-        currentUser = (ArrayList<User>) getIntent().getSerializableExtra("currentUser");
-        currentMedicines = (ArrayList<CurrentMedicine>) getIntent().getSerializableExtra("currentMedicines");
-        medicines = (ArrayList<Medicine>) getIntent().getSerializableExtra("allMedicines");
+//        currentUser = (ArrayList<User>) getIntent().getSerializableExtra("currentUser");
 
+//        medicines = (ArrayList<Medicine>) getIntent().getSerializableExtra("allMedicines");
+
+        User user = UserUtil.getUserFromSharedPreferencies(getSharedPreferences(UserUtil.PREFS_NAME, UserUtil.PREFS_MODE));
+//        currentMedicines = user.getCurrentMedicines();
+//        medicines = user.
     }
 
 
@@ -118,17 +123,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logingOut(){
-        SharedPreferences.Editor editor = getSharedPreferences("USER_PREFS", MODE_PRIVATE).edit();
-        editor.remove("username");
-        editor.remove("name");
-        editor.remove("surname");
-        editor.remove("id");
-        editor.putBoolean("isLogged", false);
-        editor.apply();
+//        SharedPreferences.Editor editor = getSharedPreferences(UserUtil.PREFS_NAME, MODE_PRIVATE).edit();
+//        editor.remove("username");
+//        editor.remove("name");
+//        editor.remove("surname");
+//        editor.remove("id");
+//        editor.putBoolean("isLogged", false);
+//        editor.apply();
+        UserUtil.logOut(getSharedPreferences(UserUtil.PREFS_NAME, UserUtil.PREFS_MODE));
         Intent loginPage = new Intent(MainActivity.this, LoginActivity.class);
         loginPage.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(loginPage);
-    }
+ }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -178,37 +184,37 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Bundle bundle = new Bundle();
-            ArrayList<Medicine> tmpList = new ArrayList<>();
-            Bundle bundle1 = new Bundle();
-            ArrayList<Medicine> tmpList1 = new ArrayList<>();
+//            Bundle bundle = new Bundle();
+//            ArrayList<Medicine> tmpList = new ArrayList<>();
+//            Bundle bundle1 = new Bundle();
+//            ArrayList<Medicine> tmpList1 = new ArrayList<>();
             Fragment fragment = null;
             switch (position) {
                 case 0:
-                    for(Medicine me: medicines){
-                    for(CurrentMedicine m: currentMedicines){
-                       if(m.getActive() == true && m.getMedicineID().equals(me.getObjectId())){
-                           tmpList.add(me);
-                       }
-                     }
-
-                    }
-                    bundle.putSerializable("activeMedicines", tmpList);
+//                    for(Medicine me: medicines){
+//                    for(CurrentMedicine m: currentMedicines){
+//                       if(m.getActive() == true && m.getMedicineID().equals(me.getObjectId())){
+//                           tmpList.add(me);
+//                       }
+//                     }
+//
+//                    }
+//                    bundle.putSerializable("activeMedicines", tmpList);
                     fragment = new Active();
-                    fragment.setArguments(bundle);
+                   // fragment.setArguments(bundle);
                     break;
                 case 1:
-                    for(Medicine me: medicines){
-                        for(CurrentMedicine m: currentMedicines){
-                            if(m.getActive() == false && m.getMedicineID().equals(me.getObjectId())){
-                                tmpList1.add(me);
-                            }
-                        }
-
-                    }
-                    bundle1.putSerializable("activeMedicines", tmpList1);
+//                    for(Medicine me: medicines){
+//                        for(CurrentMedicine m: currentMedicines){
+//                            if(m.getActive() == false && m.getMedicineID().equals(me.getObjectId())){
+//                                tmpList1.add(me);
+//                            }
+//                        }
+//
+//                    }
+//                    bundle1.putSerializable("activeMedicines", tmpList1);
                     fragment = new NotActive();
-                    fragment.setArguments(bundle1);
+                    //fragment.setArguments(bundle1);
                     break;
             }
             return fragment;

@@ -22,6 +22,8 @@ public class CurrentMedicine implements Serializable
     private Boolean active;
     private java.util.Date dateOfStart;
     private String ownerId;
+  private Medicine medicine;
+  private java.util.List<Times> times;
     public java.util.Date getCreated()
     {
         return created;
@@ -111,6 +113,26 @@ public class CurrentMedicine implements Serializable
     {
         return ownerId;
     }
+
+  public Medicine getMedicine()
+  {
+    return medicine;
+  }
+
+  public void setMedicine( Medicine medicine )
+  {
+    this.medicine = medicine;
+  }
+
+  public java.util.List<Times> getTimes()
+  {
+    return times;
+  }
+
+  public void setTimes( java.util.List<Times> times )
+  {
+    this.times = times;
+  }
 
 
     public CurrentMedicine save()

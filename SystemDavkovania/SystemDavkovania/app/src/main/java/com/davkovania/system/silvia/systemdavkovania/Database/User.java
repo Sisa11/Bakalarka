@@ -22,6 +22,7 @@ public class User implements Serializable
     private Double serialVersionUID;
     private java.util.Date updated;
     private String name;
+  private java.util.List<CurrentMedicine> currentMedicines;
     public java.util.Date getCreated()
     {
         return created;
@@ -105,6 +106,16 @@ public class User implements Serializable
     {
         this.name = name;
     }
+
+  public java.util.List<CurrentMedicine> getCurrentMedicines()
+  {
+    return currentMedicines;
+  }
+
+  public void setCurrentMedicines( java.util.List<CurrentMedicine> currentMedicines )
+  {
+    this.currentMedicines = currentMedicines;
+  }
 
 
     public User save()

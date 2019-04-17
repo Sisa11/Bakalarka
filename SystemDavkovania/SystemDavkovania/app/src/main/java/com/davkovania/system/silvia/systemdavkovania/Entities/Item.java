@@ -22,6 +22,9 @@ public class Item extends AppCompatActivity implements Serializable {
         switchView = switchView1;
     }
 
+    public Item() {
+    }
+
     public int getmImageView() {
         return mImageView;
     }

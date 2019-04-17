@@ -21,7 +21,9 @@ import com.davkovania.system.silvia.systemdavkovania.Database.CurrentMedicine;
 import com.davkovania.system.silvia.systemdavkovania.Database.Medicine;
 import com.davkovania.system.silvia.systemdavkovania.Database.User;
 import com.davkovania.system.silvia.systemdavkovania.Entities.Item;
+import com.davkovania.system.silvia.systemdavkovania.Entities.ItemClickListener;
 import com.davkovania.system.silvia.systemdavkovania.Entities.RecyclerViewAdapter;
+import com.davkovania.system.silvia.systemdavkovania.Entities.UserUtil;
 import com.davkovania.system.silvia.systemdavkovania.R;
 import com.davkovania.system.silvia.systemdavkovania.Windows.DetailActivity;
 import com.davkovania.system.silvia.systemdavkovania.Windows.LoginActivity;
@@ -60,12 +62,38 @@ public class Active extends Fragment {
             }
         });
 
-        activeMedicines = (ArrayList<Medicine>) getArguments().getSerializable("activeMedicines");
+
+        User user = UserUtil.getUserFromSharedPreferencies(this.getActivity().getSharedPreferences(UserUtil.PREFS_NAME, UserUtil.PREFS_MODE));
+        //activeMedicines = (ArrayList<Medicine>) getArguments().getSerializable("activeMedicines");
+        if(user.getCurrentMedicines()!= null) {
+            for (CurrentMedicine cm : user.getCurrentMedicines()) {
+                if (cm.getActive()) {
+                    activeMedicines.add(cm.getMedicine());
+                }
+            }
+        }
 
         recycView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recycView.setHasFixedSize(true);
         recLayoutManager = new LinearLayoutManager(getContext());
-        recAdap = new RecyclerViewAdapter(itemList, getContext());
+        recAdap = new RecyclerViewAdapter(itemList, getContext(),
+                new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+//                if(isLongClick){
+//                    Toast.makeText(context, "Lond Click: "+ mitemList.get(position), Toast.LENGTH_SHORT);
+//                }
+//                    else{
+//                    Log.d(TAG, "onClick:" + mitemList.get(position));
+                    //Toast.makeText(context, " "+ mitemList.get(position), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), DetailActivity.class);
+                    intent.putExtra("name", itemList.get(position).getTextV1());
+                    startActivity(intent);
+
+//                }
+            }
+        });
+
 
         recycView.setLayoutManager(recLayoutManager);
         recycView.setAdapter(recAdap);
